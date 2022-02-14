@@ -9,8 +9,46 @@ class ProductsController < ApplicationController
     # secretKey = ''
     # code = ''
     # @products = RestClient.post("https://shipit-developer-test.myshopify.com/admin/oauth/access_token", "client_id=" + api_key)
-    @products = RestClient.get("https://shipit-developer-test.myshopify.com/admin/api/2022-01/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")
 
-    render(json: { products: @products })
+    require 'net/http'
+    require 'uri'
+
+    uri = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders.json?status=any")
+    request = Net::HTTP::Get.new(uri)
+    request.content_type = "application/json"
+    request["X-Shopify-Access-Token"] = "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"
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    uri = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/4145054023834/fulfillment_orders.json")
+    request = Net::HTTP::Get.new(uri)
+    request["X-Shopify-Access-Token"] = "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"
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    # response.code
+    # response.body
+    # render :json => response.body
+
+    render(json: { orders: response.body })
+
+
+    # response.code
+    # response.body
+    # @products = RestClient.get("https://shipit-developer-test.myshopify.com/admin/api/2022-01/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")
+
+    # render(json: { products: @products })
   end
 end
