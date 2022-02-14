@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment: MyText
+  products: MyText
+  origin: MyText
+  sizes: MyText
+  kind: MyString
+  reference: MyString
+  destiny: MyText
+  items: MyString
+  courier: MyString
+
+two:
+  payment: MyText
+  products: MyText
+  origin: MyText
+  sizes: MyText
+  kind: MyString
+  reference: MyString
+  destiny: MyText
+  items: MyString
+  courier: MyString
