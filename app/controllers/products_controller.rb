@@ -40,9 +40,13 @@ class ProductsController < ApplicationController
 
     # response.code
     # response.body
-    # render :json => response.body
 
-    render(json: { orders: response.body })
+    r = JSON.parse(response.body)
+
+    render :json => r["fulfillment_orders"][0]["line_items"][0]
+    # response = {1 => 'Hola'}
+
+    # render(json: { orders: response.body })
 
 
     # response.code
