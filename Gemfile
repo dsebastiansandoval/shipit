@@ -64,3 +64,10 @@ gem 'unicorn' # test server
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "shopify_app"
+
+#to allow us to hide our API key and password in a .env file:
+gem 'dotenv-rails'
+#to allow us to easily make requests to Shopify's REST API
+gem 'rest-client'
+#to make cross-origin AJAX possible
+gem 'rack-cors'
