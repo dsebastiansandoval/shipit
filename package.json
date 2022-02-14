@@ -1,5 +1,7 @@
 {
   "name": "shipit_tecnical_test",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@shopify/shopify-api": "^2.1.0"
+  }
 }
