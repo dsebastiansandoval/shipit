@@ -24,19 +24,23 @@ class OrdersController < ApplicationController
     cont = get_request(uri_count)["count"].to_i
     orders = get_request(uri_orders)
     products = get_request(uri_products)
-    @ord_ids , @payment, @sku, @orders, @quantity = [] , [], [], [], []
+    @ord_ids , @payment, @sku, @orders, @quantity, @properties, @address = [] , [], [], [], [], [], []
     for c in 0...cont
       @ord_ids.push(orders["orders"][c]["id"])
       @payment.push(orders["orders"][c]["financial_status"])
       if orders["orders"][c]["fulfillments"][0] != nil
         @sku.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["sku"])
         @quantity.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["quantity"])
+        @properties.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["properties"])
+        @address.push(orders["orders"][c]["fulfillments"][0]["origin_address"])
       else
         @sku.push(nil)
         @quantity.push(nil)
+        @properties.push(nil)
+        @address.push(nil)
       end
-      # uri_ord = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/#{orders["orders"][c]["id"]}.json")
-      # @orders.push(get_request(uri_ord)["quantity"])
+      uri_ord = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/#{orders["orders"][c]["id"]}.json")
+      #@orders.push(get_request(uri_ord)["quantity"])
 
     end
     @orders = orders
