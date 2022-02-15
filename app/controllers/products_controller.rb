@@ -10,13 +10,12 @@ class ProductsController < ApplicationController
     # code = ''
     # @products = RestClient.post("https://shipit-developer-test.myshopify.com/admin/oauth/access_token", "client_id=" + api_key)
 
-    require 'net/http'
-    require 'uri'
+    
 
     uri = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders.json?status=any")
     request = Net::HTTP::Get.new(uri)
     request.content_type = "application/json"
-    request["X-Shopify-Access-Token"] = "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"
+    request["X-Shopify-Access-Token"] = "#{ENV['SHOPIFY_API_KEY']}"
 
     req_options = {
       use_ssl: uri.scheme == "https",
@@ -54,5 +53,9 @@ class ProductsController < ApplicationController
     # @products = RestClient.get("https://shipit-developer-test.myshopify.com/admin/api/2022-01/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")
 
     # render(json: { products: @products })
+
+
+    
+
   end
 end
