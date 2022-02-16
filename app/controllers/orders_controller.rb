@@ -17,6 +17,8 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @all_orders = Order.all
+    @shippments = Shipping.all
     uri_count = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/count.json?status=any")
     uri_orders = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders.json?status=any")
     uri_products = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/products.json")
@@ -53,12 +55,27 @@ class OrdersController < ApplicationController
 
   def new
     
-    redirect_to '/'
+    @order = Order.where(order_id: params[:locat]).first_or_create()
+    @order.update(order_id: params[:locat])
+
+    if @order.save
+
+      redirect_to '/'
+    else
+      redirect_to '/'
+    end
     
   end
 
   def create
-    
+
+        
+
+
   end
+
+  # def order_params
+  #     params.require(:order).permit(:order_id, :payment, :products, :origin, :sizes, :kind, :reference, :destiny, :items, :courier)
+  # end
 
 end

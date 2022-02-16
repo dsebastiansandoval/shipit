@@ -30,4 +30,6 @@ Hola <br>
 <%= @quantity%><br>
 <%= @properties%><br>
 <%= @address%><br>
-<%= @orders%><br>
+<!-- <%= @orders%><br> -->
+<%= @all_orders.last.nil? ? '' : @all_orders.last.order_id%><br>
+<%= @shippments.last.nil? ? '' : @shippments.last.order_id%><br>
