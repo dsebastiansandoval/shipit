@@ -37,13 +37,4 @@ ActiveRecord::Schema.define(version: 2022_02_14_231711) do
     t.index ["order_id"], name: "index_shippings_on_order_id"
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string "shopify_domain", null: false
-    t.string "shopify_token", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "access_scopes"
-    t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
-  end
-
 end

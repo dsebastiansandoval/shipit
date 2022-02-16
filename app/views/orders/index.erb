@@ -1,8 +1,33 @@
 Hola <br>
+
+    <table id="ordersTable" class="table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Payment Status</th>
+          <th>Products</th>
+          <th>Oigin</th>
+          <th>Sizes</th>
+          <th>Kind</th>
+          <th>Reference</th>
+          <th>Destiny</th>
+          <th>Items</th>
+          <th>Courrier</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <%= render partial: "item", locals: { order: order } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 <% x = 1%>
-<%= @ord_ids%><br>
 <%= @payment%><br>
 <%= @sku%><br>
 <%= @quantity%><br>
 <%= @properties%><br>
 <%= @address%><br>
+<%= @orders%><br>

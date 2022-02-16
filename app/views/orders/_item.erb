@@ -1,0 +1,17 @@
+<tr>
+  <td><%=order["id"]%></td>
+  <td><center><%=order["financial_status"]%></center></td>
+  <td>
+    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["sku"]%><br>
+    <%=order["total_line_items_price"].nil? ? 'None' : order["total_line_items_price"]%><br>
+    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["properties"]%>
+  </td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+  <td><%=order["id"]%></td>
+</tr>
