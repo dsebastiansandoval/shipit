@@ -4,13 +4,13 @@
 
   </div>
   <div class="x_content">
-    <%@all_orders.each do |order|%>
+    <%@shippments.each do |order|%>
       <p>
         <strong>Order:</strong>
         <%= order.order_id %>
  
-        <strong>Payment Status:</strong>
-        <%= order.order_id %>
+        <strong> Payment Status:</strong>
+        <%= order.status %>
       </p>
     <%end%>
 
