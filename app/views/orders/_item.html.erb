@@ -2,20 +2,39 @@
   <td><small><%=order["id"]%></small></td>
   <td><small><center><%=order["financial_status"]%></center></small></td>
   <td><small>
-    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["sku"]%><br>
-    <%=order["total_line_items_price"].nil? ? 'None' : order["total_line_items_price"]%><br>
-    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["properties"]%>
+    SKU: <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["sku"][0..18]%><br>
+    Amount<%=order["total_line_items_price"].nil? ? 'None' : order["total_line_items_price"]%><br>
+    Description: <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["properties"]%>
   </small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
-  <td><small><%=order["id"]%></small></td>
+  <td>
+    <small>
+      Street & Number: <br><%=order["shipping_address"].nil? ? 'None' : order["shipping_address"]["address1"][0..15]%><br>
+      Complement: <%=order["shipping_address"].nil? ? 'None' : order["shipping_address"]["address2"]%><br>
+      Comune Id: <%=order["shipping_address"].nil? ? 'None' : order["shipping_address"]["zip"]%><br>
+      email: <%=order["customer"].nil? ? 'None' : order["customer"]["email"]%><br>
+      Phone: <%=order["customer"].nil? ? 'None' : order["customer"]["phone"]%>
+    </small>
+  </td>
   <td><small>
-    <%= link_to 'Almacenar', new_order_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
-    <%= link_to 'Generar Envio', new_shipping_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
-
+    Width: <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["grams"]%><br>
+    Weight: <%=order["total_weight"].nil? ? 'None' : order["total_weight"]%>
   </small></td>
+  <td><small>
+    Kind: <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["variant_inventory_management"]%>
+  </small></td>
+  <td><small> <%=order["name"].nil? ? 'None' : order["name"]%> </small></td>
+  <td><small>
+    Street & Number: <br><%=order["billing_address"].nil? ? 'None' : order["billing_address"]["address1"][0..15]%><br>
+    Complement: <%=order["billing_address"].nil? ? 'None' : order["billing_address"]["address2"]%><br>
+    Comune Id: <%=order["billing_address"].nil? ? 'None' : order["billing_address"]["zip"]%><br>
+    email: <%=order["email"].nil? ? 'None' : order["email"]%><br>
+    Phone: <%=order["phone"].nil? ? 'None' : order["phone"]%>
+  </small></td>
+  <td><small><%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["fulfillable_quantity"]%></small></td>
+  <td><small><%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["tracking_company"]%></small></td>
+  <td><small><center>
+    <%= link_to 'Almacenar', new_order_path_url(locat: order["id"]), :disabled => false, class: "btn btn-info",id:"txt"  %> 
+    <%= link_to 'Generar Envio', new_shipping_path_url(locat: order["id"]), :disabled => false, class: "btn btn-info",id:"txt"  %>
+
+  </center></small></td>
 </tr>

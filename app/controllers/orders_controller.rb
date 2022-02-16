@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
 
+  def initialize()
+    super
+    @all_orders = Order.all
+    @shippments = Shipping.all
+  end
 
-  def get_request(uri)
+  def get_request(uri) #Parse JSON to text array
 
     request = Net::HTTP::Get.new(uri)
     request.content_type = "application/json"
@@ -17,6 +22,7 @@ class OrdersController < ApplicationController
       return JSON.parse(response.body)
   end
 
+
   def index
     @all_orders = Order.all
     @shippments = Shipping.all
@@ -26,31 +32,14 @@ class OrdersController < ApplicationController
 
     cont = get_request(uri_count)["count"].to_i
     orders = get_request(uri_orders)
-    @ord_ids , @payment, @sku, @orders, @quantity, @properties, @address = [] , [], [], [], [], [], []
+    @fullfilments ,@ord_ids , @payment, @sku, @orders, @quantity, @properties, @address = [] , [], [], [], [], [], []
     for c in 0...cont
       @orders.push(orders["orders"][c])
-      @ord_ids.push(orders["orders"][c]["id"])
-      @payment.push(orders["orders"][c]["financial_status"])
-      if orders["orders"][c]["fulfillments"][0] != nil
-        @sku.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["sku"])
-        @quantity.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["quantity"])
-        @properties.push(orders["orders"][c]["fulfillments"][0]["line_items"][0]["properties"])
-        @address.push(orders["orders"][c]["fulfillments"][0]["origin_address"])
-      else
-        @sku.push(nil)
-        @quantity.push(nil)
-        @properties.push(nil)
-        @address.push(nil)
-      end
       uri_ord = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/#{orders["orders"][c]["id"]}/fulfillment_orders.json")
-      #@orders.push(get_request(uri_ord)["quantity"])
+      # @fullfilments << get_request(uri_ord)
 
     end
-      uri_ord = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/#{orders["orders"][0]["id"]}.json")
-      # order = get_request(uri_ord)
 
-
-    # @orders = orders
 
   end
 
@@ -68,15 +57,10 @@ class OrdersController < ApplicationController
     
   end
 
-  def create
+  def show
 
-        
 
 
   end
-
-  # def order_params
-  #     params.require(:order).permit(:order_id, :payment, :products, :origin, :sizes, :kind, :reference, :destiny, :items, :courier)
-  # end
 
 end

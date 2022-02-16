@@ -47,7 +47,7 @@ body {
   position: relative;
   border-radius: 25px;
   top: 20px;
-  width: 100%;
+  width: 94%;
   margin-bottom: 20px;
   margin-left: 20px;
   padding: 10px 20px;
@@ -112,11 +112,11 @@ a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
   background-color: #ECF0F1; /* Green */
   border: 1px solid #ddd;
   color: #666;
-  padding: 15px 5px;
+  padding: 10px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
 }
 .btn.btn-app {
   position: relative;
