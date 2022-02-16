@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag    'application' %>
+
+<div class="x_panel">
+  <div class="x_title">
+
+  </div>
+  <div class="x_content">
+    <table id="ordersTable" class="table">
+      <thead>
+        <tr>
+          <th><small>Order</small></th>
+          <th><small>Payment Status</small></th>
+          <th><small>Products</small></th>
+          <th><small>Origin</small></th>
+          <th><small>Sizes</small></th>
+          <th><small>Kind</small></th>
+          <th><small>Reference</small></th>
+          <th><small>Destiny</small></th>
+          <th><small>Items</small></th>
+          <th><small>Courrier</small></th>
+          <th><small>Acción</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <%= render partial: "item", locals: { order: order } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% x = 1%>
+<%= @payment%><br>
+<%= @sku%><br>
+<%= @quantity%><br>
+<%= @properties%><br>
+<%= @address%><br>
+<!-- <%= @orders%><br> -->
+<%= @all_orders.last.nil? ? '' : @all_orders.last.order_id%><br>
+<%= @shippments.last.nil? ? '' : @shippments.last.order_id%><br>
+
+<style type="text/css">
+</style>

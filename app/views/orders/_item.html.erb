@@ -1,0 +1,21 @@
+<tr>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><center><%=order["financial_status"]%></center></small></td>
+  <td><small>
+    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["sku"]%><br>
+    <%=order["total_line_items_price"].nil? ? 'None' : order["total_line_items_price"]%><br>
+    <%=order["fulfillments"][0].nil? ? 'None' : order["fulfillments"][0]["line_items"][0]["properties"]%>
+  </small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small><%=order["id"]%></small></td>
+  <td><small>
+    <%= link_to 'Almacenar', new_order_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
+    <%= link_to 'Generar Envio', new_shipping_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
+
+  </small></td>
+</tr>

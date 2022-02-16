@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 
+
   def get_request(uri)
 
     request = Net::HTTP::Get.new(uri)
