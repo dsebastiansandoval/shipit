@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag    'application' %>
+<div class="x_panel">
+  <div class="x_title">
+
+  </div>
+  <div class="x_content">
+    <%@all_orders.each do |order|%>
+      <p>
+        <strong>Order:</strong>
+        <%= order.order_id %>
+ 
+        <strong> Payment Status:</strong>
+        <%= order.payment %>
+      </p>
+    <%end%>
+
+
+
+    <%= link_to 'Atrás', '/' %>
+  </div>
+</div>

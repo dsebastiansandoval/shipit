@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag    'application' %>
 
 <div class="x_panel">
-  <div class="x_title">
-
+  <div class="x_title"><center>
+    <h1>Shipit Test</h1>
+    <h2>Datos de API de Shopify</h2>
+  </center>
   </div>
   <div class="x_content">
     <table id="ordersTable" class="table">
@@ -29,15 +31,3 @@
     </table>
   </div>
 </div>
-<% x = 1%>
-<%= @payment%><br>
-<%= @sku%><br>
-<%= @quantity%><br>
-<%= @properties%><br>
-<%= @address%><br>
-<!-- <%= @orders%><br> -->
-<%= @all_orders.last.nil? ? '' : @all_orders.last.order_id%><br>
-<%= @shippments.last.nil? ? '' : @shippments.last.order_id%><br>
-
-<style type="text/css">
-</style>

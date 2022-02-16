@@ -24,20 +24,16 @@ class OrdersController < ApplicationController
 
 
   def index
-    @all_orders = Order.all
-    @shippments = Shipping.all
+
     uri_count = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/count.json?status=any")
     uri_orders = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders.json?status=any")
     uri_products = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/products.json")
 
     cont = get_request(uri_count)["count"].to_i
     orders = get_request(uri_orders)
-    @fullfilments ,@ord_ids , @payment, @sku, @orders, @quantity, @properties, @address = [] , [], [], [], [], [], []
+    @orders  = []
     for c in 0...cont
       @orders.push(orders["orders"][c])
-      uri_ord = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/#{orders["orders"][c]["id"]}/fulfillment_orders.json")
-      # @fullfilments << get_request(uri_ord)
-
     end
 
 
@@ -48,9 +44,26 @@ class OrdersController < ApplicationController
     @order = Order.where(order_id: params[:locat]).first_or_create()
     @order.update(order_id: params[:locat])
 
+    uri_count = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders/count.json?status=any")
+    uri_orders = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/orders.json?status=any")
+    uri_products = URI.parse("https://shipit-developer-test.myshopify.com/admin/api/2022-01/products.json")
+
+    cont = get_request(uri_count)["count"].to_i
+    orders = get_request(uri_orders)
+    @orders  = []
+    pay= ''
+    for c in 0...cont
+      @orders.push(orders["orders"][c])
+      if orders["orders"][c]["id"].to_s == params[:locat].to_s
+        pay = orders["orders"][c]["financial_status"].to_s
+      end
+    end
+
+    @order.update(payment: pay)
+
     if @order.save
 
-      redirect_to '/'
+      redirect_to '/order_show'
     else
       redirect_to '/'
     end
@@ -58,8 +71,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-
-
 
   end
 
