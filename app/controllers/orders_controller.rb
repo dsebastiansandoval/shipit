@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
 
     cont = get_request(uri_count)["count"].to_i
     orders = get_request(uri_orders)
-    products = get_request(uri_products)
     @ord_ids , @payment, @sku, @orders, @quantity, @properties, @address = [] , [], [], [], [], [], []
     for c in 0...cont
       @orders.push(orders["orders"][c])
@@ -53,6 +52,8 @@ class OrdersController < ApplicationController
   end
 
   def new
+    
+    redirect_to '/'
     
   end
 

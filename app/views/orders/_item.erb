@@ -13,5 +13,9 @@
   <td><%=order["id"]%></td>
   <td><%=order["id"]%></td>
   <td><%=order["id"]%></td>
-  <td><%=order["id"]%></td>
+  <td>
+    <%= link_to 'Almacenar', new_order_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
+    <%= link_to 'Generar Envio', new_shipping_path_url(locat: order["id"]), :disabled => false, class: "btn btn-primary",id:"txt"  %>
+
+  </td>
 </tr>
